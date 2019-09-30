@@ -8,28 +8,32 @@
     <title>Document</title>
 </head>
 <body>
-<?php
-$n_error=$r_error="";
+<?php $n_error=$r_error="";
+if ($_SERVER["REQUEST_METHOD"] == "POST"){
+    
 if(empty($_POST['name']) && empty($_POST['roll']))
     {
         $n_error='enter name'."<br>";
         $r_error='enter roll';
-    }
+    } 
+}?>
 
-else if (isset($_POST['name']) && isset($_POST['roll']))
+    <form action="" method="POST">
+        name<input type="text" name="name">
+        <span style="color:red" >*  <?php echo $n_error;?></span><br>
+        roll<input type="number" name="roll">
+        <span style="color:red" >* <?php echo $r_error;?></span><br>
+        <input type="submit">
+    </form>
+<?php
+   
+if (isset($_POST['name']) && isset($_POST['roll']))
     {
         echo $_POST['name']."<br>";
         echo $_POST['roll']."<br>";
     }
 
 ?>
-    <form action="" method="POST">
-        name<input type="text" name="name"><br>
-        <span style="color:red" >*  <?php echo $n_error;?></span>
-        roll<input type="number" name="roll"><br>
-        <span style="color:red" >* <?php echo $r_error;?></span>
-        <input type="submit">
-    </form>
 </body>
 
 </html>
